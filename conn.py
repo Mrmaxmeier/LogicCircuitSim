@@ -1,9 +1,11 @@
 class Connection(object):
 	"""ein Kabel von Output zu Input - A zu B"""
-	def __init__(self, a, output, b, input):
-		self.a,self.output = a, output
-		self.b,self.input = b, input
+	def __init__(self, output, input):
+		self.output = output
+		self.input = input
 		self.bool = None
 	def update(self):
-		self.bool =self.a.outputs[self.output]
-		self.b.inputs[self.input] = self.bool 
+		out, outName = self.output
+		inp, inpName = self.input
+		self.bool = out.outputs[outName]
+		inp.inputs[inpName] = self.bool 

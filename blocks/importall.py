@@ -1,7 +1,7 @@
-import lever
-import inverter
-import lamp
-#import 
-#import 
-#import 
-#import 
+from blocks.lever import *
+from blocks.inverter import *
+from blocks.lamp import *
+#from blocks. import *
+#from blocks. import *
+#from blocks. import *
+#from blocks. import *

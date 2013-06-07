@@ -1,4 +1,6 @@
-class Not(Block):
+from block import Block
+
+class Inverter(Block):
 	"""Invertiert das Input."""
 	def __init__(self):
 		self.ticks = 1
@@ -6,7 +8,7 @@ class Not(Block):
 		self.outputs = {"Output":-1}
 		self.texture = "NOT.gif"
 		self.name = "Inverter"
-	def computeOutputs(self, self.inputs, self.outputs):
+	def computeOutputs(self, inputs, outputs):
 		"""...bei einem Update..."""
 		if self.inputs["Input"] == 0:
 			self.outputs["Output"] = 1

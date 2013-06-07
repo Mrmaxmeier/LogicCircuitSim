@@ -1,4 +1,4 @@
-from block import *
+from blocks.block import *
 from conn import *
 from blocks.importall import *
 not1 = Not()
