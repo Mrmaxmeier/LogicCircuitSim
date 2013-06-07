@@ -1,3 +1,5 @@
+from block import Block
+
 class Lamp(Block):
 	"""Eine Info LED."""
 	def __init__(self):
@@ -6,7 +8,7 @@ class Lamp(Block):
 		self.outputs = {}
 		self.texture = "lamp.png"
 		self.name = "Lamp"
-	def computeOutputs(self, self.inputs, self.outputs):
+	def computeOutputs(self, inputs, outputs):
 		"""...bei einem Update..."""
 		if self.inputs["Input"] = 0:
 			self.texture = "lampoff.png"

@@ -1,3 +1,4 @@
+from block import Block
 class Lever(Block):
 	"""UserInput."""
 	def __init__(self):
@@ -7,7 +8,7 @@ class Lever(Block):
 		self.texture = "leveroff.png"
 		self.name = "Switch"
 		self.bool = False
-	def computeOutputs(self, self.inputs, self.outputs):
+	def computeOutputs(self, inputs, outputs):
 		"""...bei einem Update..."""
 		self.outputs["Output"] = self.bool
 		return self.outputs
