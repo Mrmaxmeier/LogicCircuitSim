@@ -10,8 +10,8 @@ class Lamp(Block):
 		self.name = "Lamp"
 	def computeOutputs(self, inputs, outputs):
 		"""...bei einem Update..."""
-		if self.inputs["Input"] = 0:
+		if self.inputs["Input"] == 0:
 			self.texture = "lampoff.png"
-		if self.inputs["Input"] = 1:
+		if self.inputs["Input"] == 1:
 			self.texture = "lampon.png"
 		return self.outputs

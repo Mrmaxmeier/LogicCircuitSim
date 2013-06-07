@@ -16,9 +16,10 @@ class Simulator:
 		"""output: (block, outputname)
 		   input:  (block, inputname)"""
 		self.disconnectAt(input)
-		self.connections.append(Connection(output, input)
+		self.connections.append(Connection(output, input))
 	
-	def disconnectAt(self, (block, inpName)):
+	def disconnectAt(self, input):
+		(block, inpName) = input
 		for con in self.connections:
 			(cBlock, cInpName) = con.input
 			if cBlock is block and cInpName == inpName:
