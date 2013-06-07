@@ -15,3 +15,5 @@ class Block():
 	def computeOutputs(self, self.inputs, self.outputs):
 		"""...bei einem Update..."""
 		return self.outputs
+	def onClick(self):
+		self.computeOutputs()
