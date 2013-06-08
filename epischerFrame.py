@@ -25,6 +25,12 @@ class EpischerFrame(Frame):
 			label.pack(side="left")
 			res[name] = label
 		return res
+	
+	def updateColors(self, f, vals, labels):
+		for key in labels.keys():
+			val = vals[key]
+			label = labels[key]
+			label.config(foreground=f(val))
 
 root = Tk()
 EpischerFrame(root, ["lol", "rofl"], "hallo", range(10))
