@@ -5,16 +5,18 @@ class Lever(Block):
 		self.ticks = 1
 		self.inputs = {}
 		self.outputs = {"Output":0}
+		self.oldinputs = self.inputs
 		self.texture = "leveroff.png"
 		self.name = "Switch"
 		self.bool = False
-	def computeOutputs(self, inputs, outputs):
+	def computeOutputs(self, inputs):
 		"""...bei einem Update..."""
-		self.outputs["Output"] = self.bool
-		return self.outputs
+		outputs = self.outputs
+		outputs["Output"] = self.bool
+		return outputs
 	def onClick(self):
 		if self.bool:
-			self.bool = 0
+			self.bool = False
 		else:
-			self.bool = 1
-		self.computeOutputs()
+			self.bool = True
+		self.computeOutputs(self.inputs)

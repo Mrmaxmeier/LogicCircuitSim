@@ -9,11 +9,16 @@ class Block():
 		self.name = "Dummy"
 	def onTick(self):
 		"""...bei einem tick..."""
-		if self.oldinputs != self.inputs:
-			self.outputs = self.onUpdate(self.inputs,self.outputs)
-		self.oldinputs = self.inputs
-	def computeOutputs(self, inputs, outputs):
+		#print(self.oldinputs,self.inputs)
+		#if self.oldinputs == self.inputs:
+		#	pass
+		#else:
+		#	self.outputs = self.computeOutputs(self.inputs)
+		#self.oldinputs = self.inputs
+		self.outputs = self.computeOutputs(self.inputs)
+	def computeOutputs(self, inputs):
 		"""...bei einem Update..."""
-		return self.outputs
+		outputs = self.outputs
+		return outputs
 	def onClick(self):
-		self.computeOutputs()
+		self.computeOutputs(self.inputs)

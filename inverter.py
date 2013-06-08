@@ -6,12 +6,14 @@ class Inverter(Block):
 		self.ticks = 1
 		self.inputs = {"Input":-1}
 		self.outputs = {"Output":-1}
+		self.oldinputs = self.inputs
 		self.texture = "NOT.gif"
 		self.name = "Inverter"
-	def computeOutputs(self, inputs, outputs):
+	def computeOutputs(self, inputs):
 		"""...bei einem Update..."""
-		if self.inputs["Input"] == 0:
-			self.outputs["Output"] = 1
-		if self.inputs["Input"] == 1:
-			self.outputs["Output"] = 1
-		return self.outputs
+		outputs = self.outputs
+		if inputs["Input"] == 0:
+			outputs["Output"] = True
+		if inputs["Input"] == 1:
+			outputs["Output"] = False
+		return outputs
