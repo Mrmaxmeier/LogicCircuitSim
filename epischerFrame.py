@@ -43,7 +43,13 @@ class EpischerFrame(Frame):
 	def updateIns(self, vals): self.updateColors(standardCols, vals, self.inLabels)
 	def updateOuts(self, vals): self.updateColors(standardCols, vals, self.outLabels)
 
+def prin(e):
+	print(e)
+
+
 root = Tk()
 f=EpischerFrame(root, ["lol", "rofl", "kopter"], "hallo", range(10))
 f.updateIns({"lol":-1, "rofl":1, "kopter":0})
+f.bind("<ButtonPress>", prin)
+f.label.bind("<ButtonPress>", prin)
 root.mainloop()
