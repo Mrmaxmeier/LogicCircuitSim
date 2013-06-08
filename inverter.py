@@ -1,8 +1,9 @@
-from block import Block
+from guiblock import GuiBlock
 
-class Inverter(Block):
+class Inverter(GuiBlock):
 	"""Invertiert das Input."""
 	def __init__(self):
+		GuiBlock.__init__(self)
 		self.ticks = 1
 		self.inputs = {"Input":-1}
 		self.outputs = {"Output":-1}

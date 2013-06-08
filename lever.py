@@ -1,7 +1,9 @@
-from block import Block
-class Lever(Block):
+from guiblock import GuiBlock
+
+class Lever(GuiBlock):
 	"""UserInput."""
 	def __init__(self):
+		GuiBlock.__init__(self)
 		self.ticks = 1
 		self.inputs = {}
 		self.outputs = {"Output":0}
@@ -15,6 +17,7 @@ class Lever(Block):
 		outputs["Output"] = self.bool
 		return outputs
 	def onClick(self):
+		print("Lever ",self," was clicked.")
 		if self.bool:
 			self.bool = False
 		else:

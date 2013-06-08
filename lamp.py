@@ -1,8 +1,9 @@
-from block import Block
+from guiblock import GuiBlock
 
-class Lamp(Block):
+class Lamp(GuiBlock):
 	"""Eine Info LED."""
 	def __init__(self):
+		GuiBlock.__init__(self)
 		self.ticks = 1
 		self.inputs = {"Input":-1}
 		self.outputs = {}
