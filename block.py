@@ -21,4 +21,4 @@ class Block():
 		outputs = self.outputs
 		return outputs
 	def onClick(self):
-		self.computeOutputs()
+		self.computeOutputs(self.inputs)

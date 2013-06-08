@@ -16,7 +16,7 @@ class Lever(Block):
 		return outputs
 	def onClick(self):
 		if self.bool:
-			self.bool = 0
+			self.bool = False
 		else:
-			self.bool = 1
+			self.bool = True
 		self.computeOutputs(self.inputs)

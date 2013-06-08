@@ -13,7 +13,7 @@ class Inverter(Block):
 		"""...bei einem Update..."""
 		outputs = self.outputs
 		if inputs["Input"] == 0:
-			outputs["Output"] = 1
+			outputs["Output"] = True
 		if inputs["Input"] == 1:
-			outputs["Output"] = 1
+			outputs["Output"] = False
 		return outputs
