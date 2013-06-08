@@ -22,7 +22,15 @@ class GuiBlock(Block):
 		self.state = False
 		self.canvas = self.frame = self.id = None
 		self.coords = [0,0]
-
+	
+	def onTick(self):
+		Block.onTick(self)
+		self.GuiUpdate()
+	
+	def GuiUpdate(self):
+		self.frame.updateIns(self.inputs)
+		self.frame.updateOuts(self.outputs)
+	
 	def attach(self, canvas, x=10, y=10):
 		if canvas is self.canvas:
 			self.canvas.coords(self.id, x, y)
@@ -57,9 +65,7 @@ class GuiBlock(Block):
 		frame.destroy()
 
 	def press(self, event):
-		print("Press...")
 		if dnd_start(self, event):
-			print("If sucess")
 			# where the pointer is relative to the label widget:
 			self.x_off = event.x
 			self.y_off = event.y

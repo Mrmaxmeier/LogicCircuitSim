@@ -1,5 +1,6 @@
 from guiblock import GuiBlock
 
+
 class Lever(GuiBlock):
 	"""UserInput."""
 	def __init__(self):

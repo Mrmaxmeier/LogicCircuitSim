@@ -1,5 +1,6 @@
 from guiblock import GuiBlock
 
+
 class Lamp(GuiBlock):
 	"""Eine Info LED."""
 	def __init__(self):
