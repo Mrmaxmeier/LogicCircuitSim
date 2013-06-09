@@ -7,7 +7,8 @@ from dndtester import *
 
 from block import *
 from conn import *
-from importall import *
+#from importall import *
+from Blocks import *
 from sim import *
 
 sim = Simulator()
