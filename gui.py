@@ -49,11 +49,24 @@ def gui():
 	placegui()
 	
 	lever = Lever()
-	print(lever)
 	inverter = Inverter()
 	lamp = Lamp()
 	
 	
+	lever1 = Lever()
+	lever2 = Lever()
+	
+	and1 = And()
+	lamp1 = Lamp() 
+
+	sim.addBlock(lever1)
+	sim.addBlock(lever2)
+	sim.addBlock(and1)
+	sim.addBlock(lamp1)
+	
+	sim.connect((lever1,"Output"), (and1,"Input1"))
+	sim.connect((lever2,"Output"), (and1,"Input2"))
+	sim.connect((and1,"Output"), (lamp1,"Input"))
 	
 	sim.addBlock(inverter)
 	sim.addBlock(lever)
@@ -66,6 +79,12 @@ def gui():
 	lever.attach(t1.canvas)
 	inverter.attach(t1.canvas)
 	lamp.attach(t1.canvas)
+	
+	
+	lamp1.attach(t1.canvas)
+	and1.attach(t1.canvas)
+	lever1.attach(t1.canvas)
+	lever2.attach(t1.canvas)
 	root.mainloop()
 
 
