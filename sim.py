@@ -1,4 +1,6 @@
 from conn import *
+import pickle
+from tkinter.filedialog import *
 
 
 class Simulator:
@@ -28,3 +30,11 @@ class Simulator:
 			(cBlock, cInpName) = con.input
 			if cBlock is block and cInpName == inpName:
 				self.connections.remove(con)
+	
+	def save(self):
+		with asksaveasfile() as f:
+			pickle.dump(self, f)
+
+def loadSim():
+	with askopenfile() as f:
+		return pickle.load(f)
