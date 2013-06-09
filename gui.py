@@ -34,11 +34,17 @@ def tickandstatus(blocks):
 def tickbutton(*args):
 	tickandstatus(sim.blocks)
 
+def saveSim(): Simulator.sim.save()
+def openSim():
+	Simulator.sim = loadSim()
+
 def gui():
 	root = tkinter.Tk()
 	root.geometry("+1+1")
 	tkinter.Button(command=root.quit, text="Quit").pack()
 	tkinter.Button(command=tickbutton, text="Tick").pack()
+	tkinter.Button(command=openSim, text="Open Sim").pack()
+	tkinter.Button(command=saveSim, text="Save Sim").pack()
 	root.bind("<space>", tickbutton)
 	t1 = Tester(root)
 	t1.top.geometry("+1+60")
