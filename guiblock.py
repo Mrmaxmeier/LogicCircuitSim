@@ -3,13 +3,17 @@ from tkinter.dnd import *
 from tkinter import *
 from block import Block
 
-
+global sim
 
 def standardCols(val):
 	if val == -1:
 		return "red"
-	elif val:
+	elif val == 1:
 		return "green"
+	elif val == str(val):
+		return "blue"
+	elif val > 1:
+		return "yellow"
 	else:
 		return "black"
 
@@ -109,11 +113,22 @@ class EpischerFrame(Frame):
 		
 		self.pack()
 	
+	def onConnectorClick(self, event):
+		print("Clicked on Connector",event.widget,":",event,event.type,event.num)
+		if event.num == 2:
+			if Simulator.sim.newconnection["Input"] == None:
+				if event.widget in self.inLabels.values():
+					print("Validated Input")
+					Simulator.sim.newconnection["newconnection"] = event.widget
+		elif event.num == 1:
+			pass
+	
 	def fill(self, frame, names):
 		res = {}
 		for name in names:
 			label = Label(frame, text=name)
 			label.pack(side="left", expand="true")
+			label.bind("<ButtonPress>", self.onConnectorClick)
 			res[name] = label
 		return res
 	
@@ -123,5 +138,5 @@ class EpischerFrame(Frame):
 			label = labels[key]
 			label.config(foreground=f(val))
 	
-	def updateIns(self, vals): self.updateColors(standardCols, vals, self.inLabels); print(vals)
+	def updateIns(self, vals): self.updateColors(standardCols, vals, self.inLabels)
 	def updateOuts(self, vals): self.updateColors(standardCols, vals, self.outLabels)

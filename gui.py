@@ -11,7 +11,11 @@ from conn import *
 from importBlocks import *
 from sim import *
 
-sim = Simulator()
+
+#global sim
+Simulator.sim =Simulator()
+
+
 
 
 def tickandstatus(blocks):

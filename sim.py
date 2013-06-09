@@ -1,9 +1,13 @@
 from conn import *
 
+
 class Simulator:
+	sim = None
+	
 	def __init__(self):
 		self.connections = []
 		self.blocks = []
+		self.newconnection = {"Input":None,"Output":None}
 	
 	def tick(self):
 		for block in self.blocks: block.onTick()
