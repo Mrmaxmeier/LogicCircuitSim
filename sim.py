@@ -32,7 +32,7 @@ class Simulator:
 				self.connections.remove(con)
 	
 	def save(self):
-		with asksavefile() as f:
+		with asksaveasfile() as f:
 			pickle.dump(self, f)
 
 def loadSim():
