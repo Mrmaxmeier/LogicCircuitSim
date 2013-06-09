@@ -19,3 +19,6 @@ class Inverter(GuiBlock):
 		if inputs["Input"] == 1:
 			outputs["Output"] = False
 		return outputs
+
+avalibleblocks.append(["Inverter",Inverter,1])
+

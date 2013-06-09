@@ -123,5 +123,5 @@ class EpischerFrame(Frame):
 			label = labels[key]
 			label.config(foreground=f(val))
 	
-	def updateIns(self, vals): self.updateColors(standardCols, vals, self.inLabels)
+	def updateIns(self, vals): self.updateColors(standardCols, vals, self.inLabels); print(vals)
 	def updateOuts(self, vals): self.updateColors(standardCols, vals, self.outLabels)

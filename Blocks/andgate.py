@@ -19,3 +19,6 @@ class And(GuiBlock):
 		else:
 			outputs["Output"] = False
 		return outputs
+
+avalibleblocks.append(["And",And,1])
+

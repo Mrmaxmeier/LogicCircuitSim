@@ -8,7 +8,7 @@ from dndtester import *
 from block import *
 from conn import *
 #from importall import *
-from Blocks import *
+from importBlocks import *
 from sim import *
 
 sim = Simulator()
@@ -39,21 +39,26 @@ def gui():
 	t1 = Tester(root)
 	t1.top.geometry("+1+60")
 	t1.top.bind("<space>", tickbutton)
+	global t1
 	#t2 = Tester(root)
 	#t2.top.geometry("+120+60")
 	#t3 = Tester(root)
 	#t3.top.geometry("+240+60")
 	
 	
-	
+	placegui()
 	
 	lever = Lever()
+	print(lever)
 	inverter = Inverter()
 	lamp = Lamp()
+	
+	
 	
 	sim.addBlock(inverter)
 	sim.addBlock(lever)
 	sim.addBlock(lamp)
+	
 	
 	sim.connect((inverter,"Output"), (lamp,"Input"))
 	sim.connect((lever,"Output"), (inverter,"Input"))
@@ -62,4 +67,35 @@ def gui():
 	inverter.attach(t1.canvas)
 	lamp.attach(t1.canvas)
 	root.mainloop()
+
+
+
+def placegui():
+	# using Tkinter's Optionmenu() as a combobox
+	def select():
+	    sf = "%s was placed" % blockvar.get()
+	    place.title(sf)
+	def placeblock():
+		newblock = avalibleblocksdict[blockvar.get()][0]()
+		sim.addBlock(newblock)
+		print(newblock,"was placed.")
+		print(newblock.inputs)
+		newblock.attach(t1.canvas)
+		select()
+
+
+	place = tkinter.Tk()
+	# use width x height + x_offset + y_offset (no spaces!)
+	place.geometry("%dx%d+%d+%d" % (330, 80, 200, 150))
+	place.title("Select the Block you want to Place...")
+
+	blockvar = tkinter.StringVar(place)
+	
+	blockvar.set(avalibleblocknames[0])
+	option = tkinter.OptionMenu(place, blockvar, *avalibleblocknames)
+	option.pack(side='left', padx=10, pady=10)
+	placebutton = tkinter.Button(place, text="place", command=placeblock)
+	placebutton.pack(side='left', padx=20, pady=10)
+
+	#place.mainloop()
 gui()

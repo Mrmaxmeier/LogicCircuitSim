@@ -10,7 +10,7 @@ class Lever(GuiBlock):
 		self.outputs = {"Output":0}
 		self.oldinputs = self.inputs
 		self.texture = "leveroff.png"
-		self.name = "Switch"
+		self.name = "Lever"
 		self.bool = False
 	def computeOutputs(self, inputs):
 		"""...bei einem Update..."""
@@ -24,3 +24,6 @@ class Lever(GuiBlock):
 		else:
 			self.bool = True
 		self.computeOutputs(self.inputs)
+
+avalibleblocks.append(["Lever",Lever,1])
+

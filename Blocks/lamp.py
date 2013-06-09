@@ -21,3 +21,6 @@ class Lamp(GuiBlock):
 			print("Lamp ",self," turned On.")
 			self.texture = "lampon.png"
 		return outputs
+
+avalibleblocks.append(["Lamp",Lamp,1])
+
