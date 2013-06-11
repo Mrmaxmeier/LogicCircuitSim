@@ -100,16 +100,17 @@ def gui():
 
 def placegui():
 	# using Tkinter's Optionmenu() as a combobox
-	def select():
+	def title():
 	    sf = "%s was placed" % blockvar.get()
 	    place.title(sf)
 	def placeblock():
 		newblock = avalibleblocksdict[blockvar.get()][0]()
+		newblock.onSetting()
 		S.sim.addBlock(newblock)
 		print(newblock,"was placed.")
 		print(newblock.inputs)
 		newblock.attach(t1.canvas)
-		select()
+		title()
 
 
 	place = tkinter.Tk()

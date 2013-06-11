@@ -7,6 +7,9 @@ class Block():
 		self.oldinputs = self.inputs
 		self.texture = ""
 		self.name = "Dummy"
+		self.settings = {}#"Name":[Val,von,bis]
+	def onSetting():
+		pass
 	def onTick(self):
 		"""...bei einem tick..."""
 		#print(self.oldinputs,self.inputs)
