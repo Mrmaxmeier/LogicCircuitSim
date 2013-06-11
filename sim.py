@@ -9,6 +9,7 @@ class Simulator:
 	def __init__(self):
 		self.connections = []
 		self.blocks = []
+		self.connImgs = []
 		self.newconnection = {"Input":None,"Output":None}
 	
 	def tick(self):
@@ -34,6 +35,16 @@ class Simulator:
 	def save(self):
 		with asksaveasfile() as f:
 			pickle.dump(self, f)
+	
+	def clearConns(self, canvas):
+		for line in self.connImgs:
+			canvas.delete(line)
+		self.connImgs = []
+	
+	def drawConns(self, canvas):
+		self.clearConns(canvas)
+		for conn in self.connections:
+			self.connImgs.append(conn.draw(canvas))
 
 def loadSim():
 	with askopenfile() as f:

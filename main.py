@@ -1,1 +1,3 @@
 from gui import *
+
+gui()

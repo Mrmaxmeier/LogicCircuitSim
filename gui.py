@@ -32,6 +32,7 @@ def tickandstatus(blocks):
 
 def tickbutton(*args):
 	tickandstatus(S.sim.blocks)
+	S.sim.drawConns(t1.canvas)
 
 def saveSim(): S.sim.save()
 def openSim():
@@ -44,6 +45,7 @@ def gui():
 	tkinter.Button(command=tickbutton, text="Tick").pack()
 	tkinter.Button(command=openSim, text="Open Sim").pack()
 	tkinter.Button(command=saveSim, text="Save Sim").pack()
+	tkinter.Button(command=lambda : S.sim.drawConns(t1.canvas), text="Redraw").pack()
 	root.bind("<space>", tickbutton)
 	t1 = Tester(root)
 	t1.top.geometry("+1+60")
@@ -127,4 +129,3 @@ def placegui():
 	placebutton.pack(side='left', padx=20, pady=10)
 
 	#place.mainloop()
-gui()
