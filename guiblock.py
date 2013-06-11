@@ -75,6 +75,9 @@ class GuiBlock(Block):
 			self.y_off = event.y
 			# where the widget is relative to the canvas:
 			self.x_orig, self.y_orig = self.canvas.coords(self.id)
+		if S.sim.selectedTool == "select":
+			print(self,"selected.")
+			S.sim.selectedBlock = self
 		self.onClick()
 
 	def move(self, event):
@@ -119,7 +122,7 @@ class EpischerFrame(Frame):
 			if Simulator.sim.newconnection["Input"] == None:
 				if event.widget in self.inLabels.values():
 					print("Validated Input")
-					Simulator.sim.newconnection["newconnection"] = event.widget
+					S.sim.newconnection["newconnection"] = event.widget
 		elif event.num == 1:
 			pass
 	

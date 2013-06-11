@@ -11,6 +11,8 @@ class Simulator:
 		self.blocks = []
 		self.connImgs = []
 		self.newconnection = {"Input":None,"Output":None}
+		self.selectedTool = None#"del","select"
+		self.selectedBlock = None
 	
 	def tick(self):
 		for block in self.blocks: block.onTick()

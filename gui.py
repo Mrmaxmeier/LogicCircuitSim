@@ -30,6 +30,10 @@ def tickandstatus(blocks):
 			print(name,":",value)
 		print()
 
+def deltoolbutton(*args): S.sim.selectedTool = "del"; print("SelectedTool: DEL")
+def selecttoolbutton(*args): S.sim.selectedTool = "select"; print("SelectedTool: SELECT")
+
+
 def tickbutton(*args):
 	tickandstatus(S.sim.blocks)
 	S.sim.drawConns(t1.canvas)
@@ -40,15 +44,17 @@ def openSim():
 
 def gui():
 	root = tkinter.Tk()
-	root.geometry("+1+1")
+	root.geometry("+5+5")
 	tkinter.Button(command=root.quit, text="Quit").pack()
 	tkinter.Button(command=tickbutton, text="Tick").pack()
+	tkinter.Button(command=deltoolbutton, text="Tool: DEL").pack()
+	tkinter.Button(command=selecttoolbutton, text="Tool: SELECT").pack()
 	tkinter.Button(command=openSim, text="Open Sim").pack()
 	tkinter.Button(command=saveSim, text="Save Sim").pack()
 	tkinter.Button(command=lambda : S.sim.drawConns(t1.canvas), text="Redraw").pack()
 	root.bind("<space>", tickbutton)
 	t1 = Tester(root)
-	t1.top.geometry("+1+60")
+	t1.top.geometry("+100+100")
 	t1.top.bind("<space>", tickbutton)
 	global t1
 	#t2 = Tester(root)

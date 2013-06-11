@@ -12,7 +12,7 @@ class MultiAnd(GuiBlock):
 		self.texture = "AND.gif"
 		self.name = "AND"
 		self.settings = {"Inputs":[2,2,99]}#"Name":[Val,von,bis]
-	def onSetting():
+	def onSetting(self):
 		self.inputs = {}
 		for c in range(self.settings["Inputs"][0]):
 			str = "I"+str(c+1)
