@@ -105,7 +105,7 @@ def placegui():
 	    place.title(sf)
 	def placeblock():
 		newblock = avalibleblocksdict[blockvar.get()][0]()
-		sim.addBlock(newblock)
+		S.sim.addBlock(newblock)
 		print(newblock,"was placed.")
 		print(newblock.inputs)
 		newblock.attach(t1.canvas)
