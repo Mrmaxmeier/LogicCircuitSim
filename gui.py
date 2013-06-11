@@ -13,16 +13,15 @@ from sim import *
 
 
 #global sim
-Simulator.sim =Simulator()
-
-
+S = Simulator
+S.sim = S()
 
 
 def tickandstatus(blocks):
 	print()
 	print("Tick...")
 	print()
-	sim.tick()
+	S.sim.tick()
 	for block in blocks:
 		print(block.name)
 		for name,value in block.inputs.items():
@@ -36,7 +35,7 @@ def tickbutton(*args):
 
 def saveSim(): Simulator.sim.save()
 def openSim():
-	Simulator.sim = loadSim()
+	S.sim = loadSim()
 
 def gui():
 	root = tkinter.Tk()
@@ -69,22 +68,22 @@ def gui():
 	and1 = And()
 	lamp1 = Lamp() 
 
-	sim.addBlock(lever1)
-	sim.addBlock(lever2)
-	sim.addBlock(and1)
-	sim.addBlock(lamp1)
+	S.sim.addBlock(lever1)
+	S.sim.addBlock(lever2)
+	S.sim.addBlock(and1)
+	S.sim.addBlock(lamp1)
 	
-	sim.connect((lever1,"Output"), (and1,"Input1"))
-	sim.connect((lever2,"Output"), (and1,"Input2"))
-	sim.connect((and1,"Output"), (lamp1,"Input"))
+	S.sim.connect((lever1,"Output"), (and1,"Input1"))
+	S.sim.connect((lever2,"Output"), (and1,"Input2"))
+	S.sim.connect((and1,"Output"), (lamp1,"Input"))
 	
-	sim.addBlock(inverter)
-	sim.addBlock(lever)
-	sim.addBlock(lamp)
+	S.sim.addBlock(inverter)
+	S.sim.addBlock(lever)
+	S.sim.addBlock(lamp)
 	
 	
-	sim.connect((inverter,"Output"), (lamp,"Input"))
-	sim.connect((lever,"Output"), (inverter,"Input"))
+	S.sim.connect((inverter,"Output"), (lamp,"Input"))
+	S.sim.connect((lever,"Output"), (inverter,"Input"))
 	
 	lever.attach(t1.canvas)
 	inverter.attach(t1.canvas)
