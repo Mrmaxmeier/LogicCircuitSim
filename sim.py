@@ -21,6 +21,15 @@ class Simulator:
 	def addBlock(self, block):
 		self.blocks.append(block)
 	
+	def deleteBlock(self, block):
+		self.blocks.remove(block)
+		block.detach()
+		for conn in self.connections:
+			out, outName = conn.output
+			inp, inpName = conn.input
+			if out is block or inp is block:
+				self.connections.remove(conn)
+	
 	def connect(self, output, input):
 		"""output: (block, outputname)
 		   input:  (block, inputname)"""

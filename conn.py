@@ -1,4 +1,4 @@
-from guiblock import *
+from getColor import *
 
 class Connection(object):
 	"""ein Kabel von Output zu Input - A zu B"""

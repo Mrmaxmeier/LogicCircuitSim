@@ -3,20 +3,12 @@ from tkinter.dnd import *
 from tkinter import *
 from block import Block
 
-global sim
+from getColor import *
 
-def standardCols(val):
-	if val == -1:
-		return "red"
-	elif val == 1:
-		return "green"
-	elif val == str(val):
-		return "blue"
-	elif val > 1:
-		return "yellow"
-	else:
-		return "black"
+from sim import *
 
+
+S = Simulator
 
 
 class GuiBlock(Block):
@@ -78,6 +70,9 @@ class GuiBlock(Block):
 		if S.sim.selectedTool == "select":
 			print(self,"selected.")
 			S.sim.selectedBlock = self
+		elif S.sim.selectedTool == "del":
+			print(self,"deleted.")
+			S.sim.deleteBlock(self)
 		self.onClick()
 
 	def move(self, event):
