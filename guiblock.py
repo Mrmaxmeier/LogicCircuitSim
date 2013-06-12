@@ -67,6 +67,8 @@ class GuiBlock(Block):
 			self.y_off = event.y
 			# where the widget is relative to the canvas:
 			self.x_orig, self.y_orig = self.canvas.coords(self.id)
+		else:
+			print("No DND_START")
 		if S.sim.selectedTool == "select":
 			print(self,"selected.")
 			S.sim.selectedBlock = self

@@ -32,6 +32,7 @@ def tickandstatus(blocks):
 
 def deltoolbutton(*args): S.sim.selectedTool = "del"; print("SelectedTool: DEL")
 def selecttoolbutton(*args): S.sim.selectedTool = "select"; print("SelectedTool: SELECT")
+def dndtoolbutton(*args): S.sim.selectedTool = "dnd"; print("SelectedTool: Drag'n'Drop")
 
 
 def tickbutton(*args):
@@ -49,6 +50,7 @@ def gui():
 	tkinter.Button(command=tickbutton, text="Tick").pack()
 	tkinter.Button(command=deltoolbutton, text="Tool: DEL").pack()
 	tkinter.Button(command=selecttoolbutton, text="Tool: SELECT").pack()
+	tkinter.Button(command=dndtoolbutton, text="Tool: DND").pack()
 	tkinter.Button(command=openSim, text="Open Sim").pack()
 	tkinter.Button(command=saveSim, text="Save Sim").pack()
 	tkinter.Button(command=lambda : S.sim.drawConns(t1.canvas), text="Redraw").pack()
