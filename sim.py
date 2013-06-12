@@ -35,6 +35,11 @@ class Simulator:
 		   input:  (block, inputname)"""
 		self.disconnectAt(input)
 		self.connections.append(Connection(output, input))
+		
+	def mkConn(self):
+		print("Making connection: ", self.newconnection)
+		self.connect(self.newconnection["Output"], self.newconnection["Input"])
+		self.newconnection = {"Input":None,"Output":None}
 	
 	def disconnectAt(self, input):
 		(block, inpName) = input

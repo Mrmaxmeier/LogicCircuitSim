@@ -35,7 +35,7 @@ class GuiBlock(Block):
 			self.detach()
 		if not canvas:
 			return
-		frame = EpischerFrame(canvas,self.inputs,self.name,self.outputs)
+		frame = EpischerFrame(canvas,self.inputs,self.name,self.outputs,self)
 		#label = tkinter.Label(canvas, text=self.name,
 		#					  borderwidth=2, relief="raised")
 		id = canvas.create_window(x, y, window=frame, anchor="nw")
@@ -96,14 +96,15 @@ class GuiBlock(Block):
 		pass
 
 class EpischerFrame(Frame):
-	def __init__(self, parent, ins, text, outs):
+	def __init__(self, parent, ins, text, outs, block):
 		Frame.__init__(self, parent)
+		self.block = block
 		self.label = Label(self, text=text,borderwidth=2, relief="raised")
 		
 		self.topFrame = Frame(self)
-		self.inLabels = self.fill(self.topFrame, ins)
+		self.inLabels = self.fill(self.topFrame, ins, True)
 		self.bottomFrame = Frame(self)
-		self.outLabels = self.fill(self.bottomFrame, outs)
+		self.outLabels = self.fill(self.bottomFrame, outs, False)
 		
 		self.topFrame.pack(side="top", fill="both")
 		self.bottomFrame.pack(side="bottom", fill="both")
@@ -111,22 +112,26 @@ class EpischerFrame(Frame):
 		
 		self.pack()
 	
-	def onConnectorClick(self, event):
-		print("Clicked on Connector",event.widget,":",event,event.type,event.num)
-		if event.num == 2:
-			if Simulator.sim.newconnection["Input"] == None:
-				if event.widget in self.inLabels.values():
-					print("Validated Input")
-					S.sim.newconnection["newconnection"] = event.widget
-		elif event.num == 1:
-			pass
+	def onConnectorClick(self, name, isInput):
+		def action(event):
+			print("Clicked on Connector",name,":","I" if isInput else "O",event,event.type,event.num)
+			if event.num == 2:
+				sim = Simulator.sim
+				if isInput:
+					sim.newconnection["Input"] = self.block, name
+					if sim.newconnection["Output"]: sim.mkConn()
+				else:
+					sim.newconnection["Output"] = self.block, name
+					if sim.newconnection["Input"]: sim.mkConn()
+			else: print("wrong button!")
+		return action
 	
-	def fill(self, frame, names):
+	def fill(self, frame, names, isInput):
 		res = {}
 		for name in names:
 			label = Label(frame, text=name)
 			label.pack(side="left", expand="true")
-			label.bind("<ButtonPress>", self.onConnectorClick)
+			label.bind("<ButtonPress>", self.onConnectorClick(name, isInput))
 			res[name] = label
 		return res
 	
