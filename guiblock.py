@@ -28,13 +28,14 @@ class GuiBlock(Block):
 		self.frame.updateOuts(self.outputs)
 	
 	def attach(self, canvas, x=10, y=10):
-		if canvas is self.canvas:
-			self.canvas.coords(self.id, x, y)
-			return
-		if self.canvas:
-			self.detach()
-		if not canvas:
-			return
+		if "canvas" in self.__dict__:
+			if canvas is self.canvas:
+				self.canvas.coords(self.id, x, y)
+				return
+			if self.canvas:
+				self.detach()
+			if not canvas:
+				return
 		frame = EpischerFrame(canvas,self.inputs,self.name,self.outputs,self)
 		#label = tkinter.Label(canvas, text=self.name,
 		#					  borderwidth=2, relief="raised")
@@ -96,6 +97,13 @@ class GuiBlock(Block):
 
 	def dnd_end(self, target, event):
 		pass
+	
+	def __getstate__(self):
+		d = dict(self.__dict__)
+		del d["frame"]
+		del d["canvas"]
+		del d["id"]
+		return d
 
 class EpischerFrame(Frame):
 	def __init__(self, parent, ins, text, outs, block):

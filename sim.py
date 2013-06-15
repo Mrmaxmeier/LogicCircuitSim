@@ -49,7 +49,7 @@ class Simulator:
 				self.connections.remove(con)
 	
 	def save(self):
-		with asksaveasfile() as f:
+		with asksaveasfile("wb") as f:
 			pickle.dump(self, f)
 	
 	def clearConns(self, canvas):
@@ -61,7 +61,20 @@ class Simulator:
 		self.clearConns(canvas)
 		for conn in self.connections:
 			self.connImgs.append(conn.draw(canvas))
+	
+	def destroy(self):
+		for block in self.blocks:
+			block.detach()
+		self.clearConns()
+	
+	def after_load(self, canvas):
+		for block in self.blocks:
+			block.attach(canvas, *block.coords)
+			self.drawConns(canvas)
 
-def loadSim():
-	with askopenfile() as f:
-		return pickle.load(f)
+def loadSim(canvas):
+	with askopenfile("rb") as f:
+		sim = pickle.load(f)
+		sim.after_load(canvas)
+		Simulator.sim.destroy()
+		Simulator.sim = sim

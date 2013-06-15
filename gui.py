@@ -41,7 +41,7 @@ def tickbutton(*args):
 
 def saveSim(): S.sim.save()
 def openSim():
-	S.sim = loadSim()
+	loadSim(t1.canvas)
 
 def gui():
 	root = tkinter.Tk()
