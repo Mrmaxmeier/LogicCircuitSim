@@ -13,6 +13,7 @@ class Simulator:
 		self.newconnection = {"Input":None,"Output":None}
 		self.selectedTool = None#"del","select","dnd"
 		self.selectedBlock = None
+		#self.maincanvas = None
 	
 	def tick(self):
 		for block in self.blocks: block.onTick()
@@ -62,10 +63,10 @@ class Simulator:
 		for conn in self.connections:
 			self.connImgs.append(conn.draw(canvas))
 	
-	def destroy(self):
+	def destroy(self, canvas):
 		for block in self.blocks:
 			block.detach()
-		self.clearConns()
+		self.clearConns(canvas)
 	
 	def after_load(self, canvas):
 		for block in self.blocks:
@@ -76,5 +77,6 @@ def loadSim(canvas):
 	with askopenfile("rb") as f:
 		sim = pickle.load(f)
 		sim.after_load(canvas)
-		Simulator.sim.destroy()
+		#sim.maincanvas = canvas
+		Simulator.sim.destroy(canvas)
 		Simulator.sim = sim

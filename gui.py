@@ -58,6 +58,7 @@ def gui():
 	t1 = Tester(root)
 	t1.top.geometry("+100+100")
 	t1.top.bind("<space>", tickbutton)
+	#S.sim.maincanvas = t1.canvas
 	global t1
 	#t2 = Tester(root)
 	#t2.top.geometry("+120+60")
