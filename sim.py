@@ -1,7 +1,7 @@
 from conn import *
 import pickle
 from tkinter.filedialog import *
-
+import pdb
 
 class Simulator:
 	sim = None
@@ -23,6 +23,10 @@ class Simulator:
 		self.blocks.append(block)
 	
 	def deleteBlock(self, block):
+		#pdb.set_trace()
+		#print(block.frame._root().__dict__)
+		del block.frame._root()._DndHandler__dnd
+		
 		self.blocks.remove(block)
 		block.detach()
 		for conn in self.connections:
