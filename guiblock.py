@@ -17,7 +17,7 @@ class GuiBlock(Block):
 		self.name = "self.name"
 		self.state = False
 		self.canvas = self.frame = self.id = None
-		self.coords = [0,0]
+		self.coords = (0,0)
 	
 	def onTick(self):
 		Block.onTick(self)
@@ -28,6 +28,7 @@ class GuiBlock(Block):
 		self.frame.updateOuts(self.outputs)
 	
 	def attach(self, canvas, x=10, y=10):
+		self.coords = x, y
 		if "canvas" in self.__dict__:
 			if canvas is self.canvas:
 				self.canvas.coords(self.id, x, y)

@@ -73,7 +73,7 @@ class Simulator:
 	def after_load(self, canvas):
 		for block in self.blocks:
 			block.attach(canvas, *block.coords)
-			self.drawConns(canvas)
+		self.drawConns(canvas)
 
 def loadSim(canvas):
 	with askopenfile("rb") as f:
