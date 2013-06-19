@@ -15,6 +15,7 @@ from sim import *
 #global sim
 S = Simulator
 S.sim = S()
+S.sim.lateinit()
 
 
 def tickandstatus(blocks):
@@ -45,6 +46,7 @@ def openSim():
 
 def gui():
 	root = tkinter.Tk()
+	root.title("MainStuff")
 	root.geometry("+5+5")
 	tkinter.Button(command=root.quit, text="Quit").pack()
 	tkinter.Button(command=tickbutton, text="Tick").pack()

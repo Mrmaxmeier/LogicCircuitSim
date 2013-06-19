@@ -14,9 +14,9 @@ class MultiAnd(GuiBlock):
 		self.settings = {"Inputs":[2,2,99]}#"Name":[Val,von,bis]
 	def onSetting(self):
 		self.inputs = {}
-		for c in range(self.settings["Inputs"][0]):
-			str = "I"+str(c+1)
-			self.inputs[str] = -1
+		for c in range(int(self.settings["Inputs"][0])):
+			inputname = "I"+str(c+1)
+			self.inputs[inputname] = -1
 	def computeOutputs(self, inputs):
 		"""...bei einem Update..."""
 		outputs = self.outputs
