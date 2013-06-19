@@ -81,7 +81,7 @@ class Simulator:
 		self.settingswindow = Settingswindow()
 		for block in self.blocks:
 			block.attach(canvas, *block.coords)
-			self.drawConns(canvas)
+		self.drawConns(canvas)
 	def updateSettingswindow(self):
 		print("Reloading SettingsWindow...")
 		self.settingswindow.block_Selected(self.selectedBlock)
