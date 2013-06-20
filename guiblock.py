@@ -74,6 +74,7 @@ class GuiBlock(Block):
 		if S.sim.selectedTool == "select":
 			print(self,"selected.")
 			S.sim.selectedBlock = self
+			S.sim.updateSettingswindow()
 		elif S.sim.selectedTool == "del":
 			print(self,"deleted.")
 			S.sim.deleteBlock(self)
@@ -126,7 +127,7 @@ class EpischerFrame(Frame):
 	def onConnectorClick(self, name, isInput):
 		def action(event):
 			print("Clicked on Connector",name,":","I" if isInput else "O",event,event.type,event.num)
-			if event.num == 2:
+			if event.num in [2,3]:
 				sim = Simulator.sim
 				if isInput:
 					sim.newconnection["Input"] = self.block, name
