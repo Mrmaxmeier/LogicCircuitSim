@@ -76,6 +76,7 @@ class Simulator:
 		for block in self.blocks:
 			block.detach()
 		self.clearConns(canvas)
+		self.settingswindow.destroy()
 	
 	def after_load(self, canvas):
 		self.settingswindow = Settingswindow(canvas._root())
@@ -131,7 +132,7 @@ class Settingswindow():
 			self.labels.append(lab)
 			self.contents.append(lab)
 			self.contents.append(spin)
-			self.widgets.append(spin)
+			self.widgets.append((name, spin))
 			self.textVars.append(textvar)
 		self.updateButton = Button(self.root, command=lambda : Simulator.sim.settingswindow.onChange(), text="Update Block")
 		self.contents.append(self.updateButton)
@@ -140,9 +141,10 @@ class Settingswindow():
 		for widget in self.contents:
 			widget.destroy()
 		self.contents = []
+		self.widgets = []
 	def onChange(self):
-		for i in range(len(self.widgets)):
-			self.settings[list(self.settings)[i]] = self.widgets[i].get()
+		for name, widget in self.widgets:
+			self.settings[name] = widget.get()
 		print(self.settings)
 		#for widget,setting in self.widgets,self.settings.keys():
 		#	self.settings[setting][0] = widget.get()
