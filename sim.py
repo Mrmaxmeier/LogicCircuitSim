@@ -16,10 +16,10 @@ class Simulator:
 		self.settingswindow = None
 		#self.maincanvas = None
 	
-	def lateinit(self):
+	def lateinit(self, tk):
 		if self.settingswindow:
 			self.settingswindow.destroy()
-		self.settingswindow = Settingswindow()
+		self.settingswindow = Settingswindow(tk)
 	
 	def tick(self):
 		for block in self.blocks: block.onTick()
@@ -78,7 +78,7 @@ class Simulator:
 		self.clearConns(canvas)
 	
 	def after_load(self, canvas):
-		self.settingswindow = Settingswindow()
+		self.settingswindow = Settingswindow(canvas._root())
 		for block in self.blocks:
 			block.attach(canvas, *block.coords)
 		self.drawConns(canvas)
@@ -105,11 +105,12 @@ def loadSim(canvas):
 
 class Settingswindow():
 	"""Das Einstellungsfenster"""
-	def __init__(self):
+	def __init__(self, tk):
 		self.selectedBlock = Simulator.sim.selectedBlock
-		self.root = Tk()
+		self.root = Toplevel(tk)
 		self.root.title("Settings")
 		self.widgets = []
+		self.contents = []
 		self.labels = []
 		self.textVars = []
 	def block_Selected(self, block):
@@ -117,6 +118,7 @@ class Settingswindow():
 		self.updateGui()
 	def updateGui(self):
 		self.settings = self.selectedBlock.settings #"Name":[Val,von,bis]
+		self.clearGui()
 		for name in self.settings.keys():
 			#print(name)
 			textvar = StringVar(self.root)
@@ -127,9 +129,17 @@ class Settingswindow():
 			lab.pack()
 			spin.pack()
 			self.labels.append(lab)
+			self.contents.append(lab)
+			self.contents.append(spin)
 			self.widgets.append(spin)
 			self.textVars.append(textvar)
-		self.updateButton = Button(self.root, command=lambda : Simulator.sim.settingswindow.onChange(), text="Update Block").pack()
+		self.updateButton = Button(self.root, command=lambda : Simulator.sim.settingswindow.onChange(), text="Update Block")
+		self.contents.append(self.updateButton)
+		self.updateButton.pack()
+	def clearGui(self):
+		for widget in self.contents:
+			widget.destroy()
+		self.contents = []
 	def onChange(self):
 		for i in range(len(self.widgets)):
 			self.settings[list(self.settings)[i]] = self.widgets[i].get()

@@ -2,7 +2,7 @@ from guiblock import GuiBlock
 
 
 class Unnamed(GuiBlock):
-  """WIP BLOCK."""
+	"""WIP BLOCK."""
 	def __init__(self):
 		GuiBlock.__init__(self)
 		self.ticks = 1
@@ -17,7 +17,7 @@ class Unnamed(GuiBlock):
 	def computeOutputs(self, inputs):
 		"""...bei einem Update..."""
 		outputs = self.outputs
-    outputs["Output"] = self.inputs["Input"]
+		outputs["Output"] = self.inputs["Input"]
 		return outputs
 
 avalibleblocks.append(["WIP",Unnamed,1])
